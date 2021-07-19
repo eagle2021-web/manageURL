@@ -1,0 +1,17 @@
+$norm: 100px;
+$line_height: $norm*3;
+.ant-layout-content {
+  min-width: $norm * 10;
+  height: $norm *7;
+  //background: #0d6efd;
+  //position: absolute;
+  //margin: $norm auto;
+  //left: 50%;
+  //transform: translate(-50%,0);
+  //.topBar {
+  //  height: $norm * 0.3;
+  //  width: 100%;
+  //  line-height: $line_height;
+  //  background: #52c41a;
+  //}
+}

@@ -1,0 +1,119 @@
+.dl-fluid {
+    width: 100%;
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  .flex-box {
+    display: flex;
+  }
+  
+  .show {
+    display: block !important;
+  }
+  
+  .hidden, [hidden] {
+    display: none !important;
+  }
+  
+  .invisible {
+    visibility: hidden;
+  }
+  
+  .outline-none {
+    outline: none;
+  }
+  
+  /* 文本对齐方式 */
+  .t-l{ text-align:left;}
+  .t-c{ text-align:center;}
+  .t-r{ text-align:right;}
+  /* 鼠标样式 */
+  .pointer{ cursor:pointer;}
+  
+  /* 禁止选中文本（如无文本选中需求，此为必选项） */
+  .user-select-none {
+    user-select: none;
+  }
+  
+  /* 清除浮动 */
+  .clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+  }
+  
+  .clearfix::after {
+    clear: both;
+  }
+  
+  /* 取消margin */
+  .no-margin {
+    margin: 0;
+  }
+  
+  .no-padding {
+    padding: 0;
+  }
+  
+  /* 取消边框 */
+  .NoBorder, .no-border{ border:0 none;}
+  /* 字母和单词换行设置，强制内容换行，强制内容不换行 */
+  .Break{ word-break:break-all; word-wrap:break-word;}
+  .Nobreak{white-space:nowrap}
+  
+  /* 取消长按 */
+  .no-touch-callout {
+    -webkit-touch-callout:none;
+    -moz-touch-callout:none;
+    -ms-touch-callout:none;
+  }
+  
+  /* 浮动定义 */
+  .left{ float:left;}
+  .right{ float:right;}
+  
+  /* 定位 s */
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .fixed {
+    position: fixed;
+  }
+  
+  /* 定位 e */
+  
+  /* 盒子模型 */
+  .border-box {
+    box-sizing: border-box;
+  }
+  
+  .content-box {
+    box-sizing: content-box;
+  }
+  
+  /* 文字溢出省略 */
+  .ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    /* 默认显示一行 */
+  }
+  
+  /* iframe 默认隐藏 */
+  iframe {
+    display: none!important;
+  }
+  
+  .iframe {
+    display: block!important;
+  }
