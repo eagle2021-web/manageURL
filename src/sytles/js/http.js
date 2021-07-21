@@ -17,7 +17,7 @@ let env = process.env.NODE_ENV;
 console.log(env);
 switch (env) {
     case 'development':
-        axios.defaults.baseURL = "http://localhost:8080/user/all";
+        axios.defaults.baseURL = "http://localhost:6789";
         break;
     case 'production':
         axios.defaults.baseURL = "";
@@ -108,9 +108,8 @@ axios.interceptors.response.use(function (response) {
 function queryGET(url, config = {}) {
     return axios.get(url, config).then(data => {
         let code = +data.code;
-        if (!isNaN(code) && code !== 0) return Promise.reject(data);
-        return data.data || data;
-
+        if (!isNaN(code) && code !== 200) return Promise.reject(data);
+        return data;
     });
 }
 

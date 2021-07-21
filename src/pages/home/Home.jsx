@@ -1,8 +1,9 @@
-import { Layout, Menu, Breadcrumb } from 'antd';
+import {Layout, Menu, Breadcrumb, Button} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import React from "react";
 import EditableTable from "./EditableTable";
 import "../../sytles/scss/Home.scss"
+import TopMenu from "./TopMenu";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -11,11 +12,7 @@ class Home extends React.Component{
         return <><Layout>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
-                </Menu>
+                <TopMenu />
             </Header>
             <Content style={{ padding: '0 50px' }}>
                 <Breadcrumb style={{ margin: '16px 0' }}>
