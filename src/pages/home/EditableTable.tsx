@@ -1,8 +1,8 @@
 import React, {useContext, useState, useEffect, useRef, ReactNode} from 'react';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
-import { FormInstance } from 'antd/lib/form';
+import {Table, Input, Button, Popconfirm, Form} from 'antd';
+import {FormInstance} from 'antd/lib/form';
 import {queryPOST} from "../../sytles/js/http"
-import {log} from "util";
+
 const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
 interface Item {
@@ -15,7 +15,8 @@ interface Item {
 interface EditableRowProps {
     index: number;
 }
-const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
+
+const EditableRow: React.FC<EditableRowProps> = ({index, ...props}) => {
     const [form] = Form.useForm();
     return (
         <Form form={form} component={false}>
@@ -25,6 +26,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
         </Form>
     );
 };
+
 interface EditableCellProps {
     title: React.ReactNode;
     editable: boolean;
@@ -33,6 +35,7 @@ interface EditableCellProps {
     record: Item;
     handleSave: (record: Item) => void;
 }
+
 const EditableCell: React.FC<EditableCellProps> = ({
                                                        title,
                                                        editable,
@@ -54,7 +57,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
 
     const toggleEdit = () => {
         setEditing(!editing);
-        form.setFieldsValue({ [dataIndex]: record[dataIndex] });
+        form.setFieldsValue({[dataIndex]: record[dataIndex]});
     };
 
     const save = async () => {
@@ -62,7 +65,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
             const values = await form.validateFields();
 
             toggleEdit();
-            handleSave({ ...record, ...values });
+            handleSave({...record, ...values});
         } catch (errInfo) {
             console.log('Save failed:', errInfo);
         }
@@ -73,7 +76,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
     if (editable) {
         childNode = editing ? (
             <Form.Item
-                style={{ margin: 0 }}
+                style={{margin: 0}}
                 name={dataIndex}
                 rules={[
                     {
@@ -82,10 +85,10 @@ const EditableCell: React.FC<EditableCellProps> = ({
                     },
                 ]}
             >
-                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+                <Input ref={inputRef} onPressEnter={save} onBlur={save}/>
             </Form.Item>
         ) : (
-            <div className="editable-cell-value-wrap" style={{ paddingRight: 24 }} onClick={toggleEdit}>
+            <div className="editable-cell-value-wrap" style={{paddingRight: 24}} onClick={toggleEdit}>
                 {children}
             </div>
         );
@@ -101,10 +104,11 @@ interface DataType {
     name: string;
     url: string;
     comment: string;
-    abc?:string
+    abc?: string
 }
-interface EntityType extends DataType{
-    id:number;
+
+interface EntityType extends DataType {
+    id: number;
 }
 
 interface EditableTableState {
@@ -113,8 +117,9 @@ interface EditableTableState {
 }
 
 type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
+
 class EditableTable extends React.Component<EditableTableProps, EditableTableState> {
-    columns: (ColumnTypes[number] & { editable?: boolean; dataIndex: string ; abc?:string})[];
+    columns: (ColumnTypes[number] & { editable?: boolean; dataIndex: string; abc?: string })[];
 
     constructor(props: EditableTableProps) {
         super(props);
@@ -142,13 +147,15 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
                 dataIndex: 'operation',
                 width: '20%',
                 //@ts-ignore
-                render: (_:any, record: { key: React.Key },index:number) =>
+                render: (_: any, record: { key: React.Key }, index: number) =>
                     this.state.dataSource.length >= 1 ? (
                         <>
                             <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
                                 <a>DELETE </a>
                             </Popconfirm>
-                            , <a onClick={() => {this.getURL(record.key)}}>跳转</a>
+                            , <a onClick={() => {
+                            this.getURL(record.key)
+                        }}>跳转</a>
                         </>
                     ) : null,
 
@@ -161,12 +168,12 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
                     key: '0',
                     name: 'name',
                     url: '32',
-                    abc:'asddddddddddddddd',
+                    abc: 'asddddddddddddddd',
                     comment: 'London, Park Lane no. 0',
                 },
                 {
                     key: '1',
-                    abc:'asd',
+                    abc: 'asd',
                     name: 'Edward King 1',
                     url: '32',
                     comment: 'London, Park Lane no. 1',
@@ -175,9 +182,10 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
             count: 2,
         };
     }
+
     getURL = (key: React.Key) => {
         // console.log(key)
-        const arr:Array<DataType> = this.state.dataSource.filter((value,index)=>{
+        const arr: Array<DataType> = this.state.dataSource.filter((value, index) => {
             // console.log(value['key'] == key +'')
             return value['key'] == key + '';
         });
@@ -186,17 +194,15 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
         // return arr.length > 0 ? arr[0]['url'] : '#';
     };
     handleDelete = (key: React.Key) => {
-        // console.log(key)
         const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+        this.setState({dataSource: dataSource.filter(item => item.key !== key)});
         //向服务器删除
-        queryPOST(`/urls/delete/${key}`,{
-        }).then((response) =>{
+        queryPOST(`/urls/delete/${key}`, {}).then((response) => {
             // console.log(response)
-            if(response != null){
+            if (response != null) {
                 console.log(response);
                 alert("删除成功");
-            }else{
+            } else {
                 alert("删除失败");
             }
         }).catch(reason => {
@@ -205,16 +211,18 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
     };
 
     handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const newData: DataType = {
-            key: count,
-            name: `Edward King ${count}`,
-            url: '32',
-            comment: `London, Park Lane no. ${count}`,
-        };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
+        const self = this;
+        queryPOST(`/urls/add`, {}).then((response) => {
+            // console.log(response)
+            if (response != null) {
+                console.log(response);
+                console.log("添加成功");
+                self.update();
+            } else {
+                console.log("添加失败");
+            }
+        }).catch(reason => {
+            console.log(reason);
         });
     };
 
@@ -227,29 +235,29 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
             ...item,
             ...row,
         });
-        this.setState({ dataSource: newData });
+        this.setState({dataSource: newData});
         //存到数据库
-        const entity:EntityType = {...row, id:+row.key};
-        console.log("entity ",entity);
-        queryPOST("/urls/save",entity )
-            .then((response) =>{
-            // console.log(response)
-            if(response != null){
-                console.log(response);
-                const b:boolean = response.data;
-                b ? console.log("successfully saved!") : console.log("failed");
-
-            }else{
-                alert("账户或密码不正确！")
-            }
-        }).catch(reason => {
-            console.log(reason);
+        const entity: EntityType = {...row, id: +row.key};
+        console.log("entity ", entity);
+        queryPOST("/urls/update", entity)
+            .then((response) => {
+                // console.log(response)
+                if (response != null) {
+                    console.log(response);
+                    const b: boolean = response.data;
+                    b ? console.log("successfully update!") : console.log("failed to update");
+                } else {
+                    alert("不正确！")
+                };
+            }).catch(reason => {
+            // console.log(reason);
         });
-        console.log(row);
+        // console.log(row);
     };
 
     render() {
-        const { dataSource } = this.state;
+        console.log("editable render")
+        const {dataSource} = this.state;
         const components = {
             body: {
                 row: EditableRow,
@@ -273,7 +281,7 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
         });
         return (
             <div>
-                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                <Button onClick={this.handleAdd} type="primary" style={{marginBottom: 16}}>
                     Add a row
                 </Button>
                 <Table
@@ -286,32 +294,37 @@ class EditableTable extends React.Component<EditableTableProps, EditableTableSta
             </div>
         );
     }
-        componentDidMount = () =>{
-            const self = this;
-            const {dataSource, count} = this.state;
-            let newDataSource:Array<DataType> = [];
-            queryPOST("/urls/all",{
-            }).then((response) =>{
-                // console.log(response)
-                if(response != null){
-                    console.log(response);
-                    const temp = [...response.data];
-                    newDataSource = temp.map((value:EntityType, index:number) =>{
-                        value.key = value.id;
-                        return value;
-                    })
-                    self.setState({
-                        dataSource: [...newDataSource],
-                        count: newDataSource.length,
-                    })
-                }else{
-                    alert("账户或密码不正确！")
-                }
-            }).catch(reason => {
-                console.log(reason);
-            });
-        }
+
+    componentDidMount = () => {
+        this.update();
+    }
+    update = () => {
+        const self = this;
+        const {dataSource, count} = this.state;
+        let newDataSource: Array<DataType> = [];
+        console.log("editable did mount")
+        queryPOST("/urls/all", {}).then((response) => {
+            // console.log(response)
+            if (response != null) {
+                console.log(response);
+                const temp = [...response.data];
+                newDataSource = temp.map((value: EntityType, index: number) => {
+                    value.key = value.id;
+                    return value;
+                })
+                self.setState({
+                    dataSource: [...newDataSource],
+                    count: newDataSource.length,
+                })
+            } else {
+                alert("账户或密码不正确！")
+            }
+        }).catch(reason => {
+            console.log(reason);
+            console.log("failed to get all urls")
+        });
+    }
 }
 
-export  default EditableTable;
+export default EditableTable;
 

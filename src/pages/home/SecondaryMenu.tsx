@@ -16,7 +16,7 @@ interface StateType{
     current_key:number,
     bool_remove:boolean
 }
-class TopMenu extends React.Component<any, StateType> {
+class SecondaryMenu extends React.Component<any, StateType> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -34,7 +34,7 @@ class TopMenu extends React.Component<any, StateType> {
         const {dataSource,current_index} = this.state;
         console.log("render", this.state);
         return <>
-            <Menu theme="dark" mode="vertical" inlineCollapsed={false} disabledOverflow={true}
+            <Menu theme="dark" mode="horizontal" inlineCollapsed={false} disabledOverflow={true}
                   defaultSelectedKeys={[`${dataSource.length > 0 ? dataSource[0].id + '': 1}`]} style={{ display:"inline-block"}}>
                 {dataSource.map((value:EntityType,index:number)=>{
                    return <Menu.Item key={value.id} onClick={(e)=> self.handleClick(index, e)}>{value.name}
@@ -149,4 +149,4 @@ class TopMenu extends React.Component<any, StateType> {
         });
     }
 };
-export default TopMenu;
+export default SecondaryMenu;

@@ -1,91 +1,91 @@
-html,body{
-  background: url(./login_bg.jpg) repeat-x;
-  background-size: 100% 0;
-  //position: relative;
-  height: 100%;
-  overflow: hidden;
-  // min-width: 1226px;
-  // min-height: 1000px;
-  // width: 1226px;
-  // height: 1000px;
-  .mainBox{
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background-color: saddlebrown;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    width: 300px;
-
-    h1{
-      text-align: center;
-      box-sizing: border-box;
-      padding: 5px;
-    }
-    p{
-      text-align: center;
-    }
-    .loginBox{
-      box-sizing: border-box;
-      margin-top: 20px;
-      padding: 25px;
-      background: #FFF;
-      border: 1px solid #F4F4F4;
-      box-shadow: 0px 5px 5px rgba(0, 0, 0, .3);
-      box-sizing: border-box;
-      margin-top: 20px;
-      padding:25px;
-      background-color: #fff;
-      border:1px solid #F4F4F4;
-      box-shadow: 0px 5px 5px rgba(0,0,0,.3);
-      .form{
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        display: block;
-        font-size: 15px;
-        margin-bottom: 20px;
-        .iconfont{
-          position: absolute;
-          font-size: 20px;
-          left: 10px;
-          top:50%;
-          transform: translateY(-50%);
-        }
-        input{
-          box-sizing: border-box;
-          height: 50px;
-          line-height: 50px;
-          text-indent: 40px;
-          width: 100%;
-        }
-      }
-      .submit {
-        box-sizing: border-box;
-        margin: 10px 0;
-        width: 100%;
-        height: 48px;
-        line-height: 48px;
-        text-align: center;
-        font-size: 18px;
-        color: #FFF;
-        background: #2299EE;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-      }
-      .submit:hover{
-        font-size: 20px;
-        color: silver;
-      }
-    }
-  }
-  .footerBox{
-    position: absolute;
-    bottom:10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
+//html,body{
+//  background: url(./login_bg.jpg) repeat-x;
+//  background-size: 100% 0;
+//  //position: relative;
+//  height: 100%;
+//  overflow: hidden;
+//  // min-width: 1226px;
+//  // min-height: 1000px;
+//  // width: 1226px;
+//  // height: 1000px;
+//  .mainBox{
+//    position: absolute;
+//    width: 300px;
+//    height: 300px;
+//    background-color: saddlebrown;
+//    position: absolute;
+//    top: 50%;
+//    left: 50%;
+//    transform: translate(-50%, -60%);
+//    width: 300px;
+//
+//    h1{
+//      text-align: center;
+//      box-sizing: border-box;
+//      padding: 5px;
+//    }
+//    p{
+//      text-align: center;
+//    }
+//    .loginBox{
+//      box-sizing: border-box;
+//      margin-top: 20px;
+//      padding: 25px;
+//      background: #FFF;
+//      border: 1px solid #F4F4F4;
+//      box-shadow: 0px 5px 5px rgba(0, 0, 0, .3);
+//      box-sizing: border-box;
+//      margin-top: 20px;
+//      padding:25px;
+//      background-color: #fff;
+//      border:1px solid #F4F4F4;
+//      box-shadow: 0px 5px 5px rgba(0,0,0,.3);
+//      .form{
+//        position: relative;
+//        left: 50%;
+//        transform: translateX(-50%);
+//        display: block;
+//        font-size: 15px;
+//        margin-bottom: 20px;
+//        .iconfont{
+//          position: absolute;
+//          font-size: 20px;
+//          left: 10px;
+//          top:50%;
+//          transform: translateY(-50%);
+//        }
+//        input{
+//          box-sizing: border-box;
+//          height: 50px;
+//          line-height: 50px;
+//          text-indent: 40px;
+//          width: 100%;
+//        }
+//      }
+//      .submit {
+//        box-sizing: border-box;
+//        margin: 10px 0;
+//        width: 100%;
+//        height: 48px;
+//        line-height: 48px;
+//        text-align: center;
+//        font-size: 18px;
+//        color: #FFF;
+//        background: #2299EE;
+//        border: none;
+//        border-radius: 2px;
+//        cursor: pointer;
+//      }
+//      .submit:hover{
+//        font-size: 20px;
+//        color: silver;
+//      }
+//    }
+//  }
+//  .footerBox{
+//    position: absolute;
+//    bottom:10px;
+//    left: 50%;
+//    transform: translateX(-50%);
+//  }
+//}
